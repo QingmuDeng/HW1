@@ -1,0 +1,65 @@
+#! /usr/local/bin/vvp
+:ivl_version "10.1 (stable)" "(v10_1-107-gab6ae79)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x18bdb20 .scope module, "demorgan_test" "demorgan_test" 2 3;
+ .timescale 0 0;
+v0x18d0800_0 .var "A", 0 0;
+v0x18d08c0_0 .var "B", 0 0;
+v0x18d0990_0 .net "nA", 0 0, L_0x18d0c50;  1 drivers
+v0x18d0a90_0 .net "nAornB", 0 0, L_0x18d0e70;  1 drivers
+v0x18d0b60_0 .net "nB", 0 0, L_0x18d0d60;  1 drivers
+S_0x18bdca0 .scope module, "dut" "demorgan" 2 60, 3 51 0, S_0x18bdb20;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A"
+    .port_info 1 /INPUT 1 "B"
+    .port_info 2 /OUTPUT 1 "nA"
+    .port_info 3 /OUTPUT 1 "nB"
+    .port_info 4 /OUTPUT 1 "nAornB"
+L_0x18d0c50 .functor NOT 1, v0x18d0800_0, C4<0>, C4<0>, C4<0>;
+L_0x18d0d60 .functor NOT 1, v0x18d08c0_0, C4<0>, C4<0>, C4<0>;
+L_0x18d0e70 .functor OR 1, L_0x18d0c50, L_0x18d0d60, C4<0>, C4<0>;
+v0x1887cf0_0 .net "A", 0 0, v0x18d0800_0;  1 drivers
+v0x18d0400_0 .net "B", 0 0, v0x18d08c0_0;  1 drivers
+v0x18d04c0_0 .net "nA", 0 0, L_0x18d0c50;  alias, 1 drivers
+v0x18d0590_0 .net "nAornB", 0 0, L_0x18d0e70;  alias, 1 drivers
+v0x18d0650_0 .net "nB", 0 0, L_0x18d0d60;  alias, 1 drivers
+    .scope S_0x18bdb20;
+T_0 ;
+    %vpi_call 2 63 "$display", "A B | ~A ~B | ~A+~B" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x18d0800_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x18d08c0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 65 "$display", "%b %b |  %b  %b |    %b", v0x18d0800_0, v0x18d08c0_0, v0x18d0990_0, v0x18d0b60_0, v0x18d0a90_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x18d0800_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x18d08c0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 67 "$display", "%b %b |  %b  %b |    %b", v0x18d0800_0, v0x18d08c0_0, v0x18d0990_0, v0x18d0b60_0, v0x18d0a90_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x18d0800_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x18d08c0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 69 "$display", "%b %b |  %b  %b |    %b", v0x18d0800_0, v0x18d08c0_0, v0x18d0990_0, v0x18d0b60_0, v0x18d0a90_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x18d0800_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x18d08c0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 71 "$display", "%b %b |  %b  %b |    %b", v0x18d0800_0, v0x18d08c0_0, v0x18d0990_0, v0x18d0b60_0, v0x18d0a90_0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "hw1.t.v";
+    "./hw1.v";
